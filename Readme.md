@@ -1,0 +1,2 @@
+Neste projeto estou fazendo a análise exploratória e o tratamento dos dados "Jogos mais vendidos de Nintendo Switch". 
+Disponível em :"https://www.kaggle.com/datasets/kabhishm/best-selling-nintendo-switch-video-games"
