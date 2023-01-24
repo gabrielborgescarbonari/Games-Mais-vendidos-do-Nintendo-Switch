@@ -1,6 +1,8 @@
-import pandas as pd  # tratar dados como framework
-import seaborn as srn  # alguns gráficos
-import statistics as sts  # substituir valores faltantes com mediana e desvio padrão
+import pandas as pd  
+import seaborn as srn  
+import statistics as sts  
+import numpy as np
+import matplotlib.pyplot as plt
 
 # importar dados
 dataset = pd.read_csv("best_selling_switch_games.csv")
@@ -13,11 +15,6 @@ dataset.columns = ["Nome", "Copias_Vendidas", "Genero",
                    "Desenvolvedor", "Publicador", "Desde", "Data de Lançamento"]
 
 # EXPLORAR DADOS CATEGÓRICOS
-# nome (Nada a se fazer)
-nom = dataset.groupby(['Nome']).size()
-nom
-nom.plot.bar(color='gray')
-
 # genero (Agrupar mesmos)
 gen = dataset.groupby(['Genero']).size()
 gen
@@ -95,4 +92,41 @@ dataset.loc[dataset['Publicador'].isin(['Devolver Digital', 'Forever Entertainme
 pub = dataset.groupby(['Publicador']).size()
 pub
 
-# TRATAMENTO DE DADOS NUMÉRICOS
+#ANÁLISE DOS DADOS
+#Generos
+print(gen.sort_values(ascending=False))
+
+#Mais vendidos de Ação
+acao = dataset.loc[dataset['Genero']=='Action']
+acao.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#2ce87a'])
+
+#Mais vendidos de Role-playing
+role = dataset.loc[dataset['Genero']=='Role-playing']
+role.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#2ce2e8'])
+
+#Mais vendidos de Plataformer
+plat = dataset.loc[dataset['Genero']=='Role-playing']
+plat.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#9ed128'])
+
+#Mais vendidos de Outros generos
+ou = dataset.loc[dataset['Genero']=='Others']
+ou.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#d14128'])
+
+#Desenvolvedor
+print(des.sort_values(ascending=False))
+
+#Mais vendidos da Nintendo
+Nin = dataset.loc[dataset['Desenvolvedor']=='Nintendo']
+Nin.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#2ce87a'])
+
+#Mais vendidos da Bandai
+Ban = dataset.loc[dataset['Desenvolvedor']=='Bandai Namco Studios']
+Ban.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#2ce2e8'])
+
+#Mais vendidos da Game Freak
+GaF = dataset.loc[dataset['Desenvolvedor']=='Game Freak']
+GaF.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#9ed128'])
+
+#Mais vendidos de Outras desenvolvedoras
+out = dataset.loc[dataset['Desenvolvedor']=='Others']
+out.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#d14128'])
