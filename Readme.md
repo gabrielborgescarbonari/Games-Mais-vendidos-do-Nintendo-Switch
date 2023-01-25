@@ -6,3 +6,4 @@ Por enquanto podemos ver os jogos mais vendidos de cada gênero, de cada desenvo
 É interessante lembrar que a Nintendo pública os resulados a cada trimestre, por isso a vemos com muita frequência.
 
 Fazendo uma leve pesquisa de mercado, vemos que muitas desenvolvedoras são ramos de empresas maiores, como Nintendo e Bandai. O mesmo ocorre com as publicadoras. :D
+

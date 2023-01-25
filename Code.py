@@ -1,6 +1,6 @@
-import pandas as pd  
-import seaborn as srn  
-import statistics as sts  
+import pandas as pd
+import seaborn as srn
+import statistics as sts
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -11,7 +11,7 @@ dataset.head()
 # tamanho
 dataset.shape
 # primeiro problema é dar nomes as colunas
-dataset.columns = ["Nome", "Copias_Vendidas", "Genero",
+dataset.columns = ["Jogos", "Copias_Vendidas", "Genero",
                    "Desenvolvedor", "Publicador", "Desde", "Data de Lançamento"]
 
 # EXPLORAR DADOS CATEGÓRICOS
@@ -73,9 +73,9 @@ dataset.loc[dataset['Desenvolvedor'] == 'Bandai Namco StudiosSora Ltd.',
 dataset.loc[dataset['Desenvolvedor'] == 'Intelligent SystemsKoei Tecmo',
             'Desenvolvedor'] = "Intelligent Systems"
 dataset.loc[dataset['Desenvolvedor'].isin(['Nintendo EPD', 'Nintendo EPD, indieszero', 'Nintendo EPDIntelligent Systems',
-                                          'MercurySteamNintendo EPD', 'Nintendo EPDEighting']), 'Desenvolvedor'] = "Nintendo"
+                                          'MercurySteamNintendo EPD', 'Nintendo EPDEighting', 'Retro Studios']), 'Desenvolvedor'] = "Nintendo"
 dataset.loc[dataset['Desenvolvedor'].isin(['Arc System Works', 'Atlus', 'CyberConnect2', 'Dimps', 'Dodge Roll', 'Good-Feel', 'ILCA', 'Innersloth', 'Konami', 'Marvelous', 'Mojang',
-                                          'Noble Muffins', 'Retro Studios', 'Spike Chunsoft', 'Square EnixAcquire', 'Tantalus Media', 'Team Ninja', 'Ubisoft ParisUbisoft Milan', 'Velan Studios']), 'Desenvolvedor'] = "Others"
+                                          'Noble Muffins', 'Spike Chunsoft', 'Square EnixAcquire', 'Tantalus Media', 'Team Ninja', 'Ubisoft ParisUbisoft Milan', 'Velan Studios']), 'Desenvolvedor'] = "Others"
 
 # visualiza o resultado
 des = dataset.groupby(['Desenvolvedor']).size()
@@ -92,41 +92,72 @@ dataset.loc[dataset['Publicador'].isin(['Devolver Digital', 'Forever Entertainme
 pub = dataset.groupby(['Publicador']).size()
 pub
 
-#ANÁLISE DOS DADOS
-#Generos
+# ANÁLISE DOS DADOS
+# Generos
 print(gen.sort_values(ascending=False))
 
-#Mais vendidos de Ação
-acao = dataset.loc[dataset['Genero']=='Action']
-acao.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#2ce87a'])
+# Mais vendidos de Ação
+acao = dataset.loc[dataset['Genero'] == 'Action']
+acao.iloc[:, 0:2].plot.bar(x='Jogos', y='Copias_Vendidas', color=['#2ce87a'])
+plt.title("Jogos mais vendidos de Ação")
 
-#Mais vendidos de Role-playing
-role = dataset.loc[dataset['Genero']=='Role-playing']
-role.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#2ce2e8'])
+# Mais vendidos de Role-playing
+role = dataset.loc[dataset['Genero'] == 'Role-playing']
+role.iloc[:, 0:2].plot.bar(x='Jogos', y='Copias_Vendidas', color=['#2ce2e8'])
+plt.title("Jogos mais vendidos de Role-playing")
 
-#Mais vendidos de Plataformer
-plat = dataset.loc[dataset['Genero']=='Role-playing']
-plat.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#9ed128'])
+# Mais vendidos de Plataformer
+plat = dataset.loc[dataset['Genero'] == 'Role-playing']
+plat.iloc[:, 0:2].plot.bar(x='Jogos', y='Copias_Vendidas', color=['#9ed128'])
+plt.title("Jogos mais vendidos de Plataforma")
 
-#Mais vendidos de Outros generos
-ou = dataset.loc[dataset['Genero']=='Others']
-ou.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#d14128'])
+# Mais vendidos de Outros generos
+ou = dataset.loc[dataset['Genero'] == 'Others']
+ou.iloc[:, 0:2].plot.bar(x='Jogos', y='Copias_Vendidas', color=['#d14128'])
+plt.title("Jogos mais vendidos de outros gêneros")
 
-#Desenvolvedor
+# Desenvolvedor
 print(des.sort_values(ascending=False))
 
-#Mais vendidos da Nintendo
-Nin = dataset.loc[dataset['Desenvolvedor']=='Nintendo']
-Nin.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#2ce87a'])
+# Mais vendidos da Nintendo
+nin = dataset.loc[dataset['Desenvolvedor'] == 'Nintendo']
+nin.iloc[:, 0:2].plot.bar(x='Jogos', y='Copias_Vendidas', color=['#2ce87a'])
+plt.title("Jogos mais vendidos da Nintendo")
 
-#Mais vendidos da Bandai
-Ban = dataset.loc[dataset['Desenvolvedor']=='Bandai Namco Studios']
-Ban.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#2ce2e8'])
+# Mais vendidos da Bandai
+ban = dataset.loc[dataset['Desenvolvedor'] == 'Bandai Namco Studios']
+ban.iloc[:, 0:2].plot.bar(x='Jogos', y='Copias_Vendidas', color=['#2ce2e8'])
+plt.title("Jogos mais vendidos da Bandai")
 
-#Mais vendidos da Game Freak
-GaF = dataset.loc[dataset['Desenvolvedor']=='Game Freak']
-GaF.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#9ed128'])
+# Mais vendidos da Game Freak
+gaF = dataset.loc[dataset['Desenvolvedor'] == 'Game Freak']
+gaF.iloc[:, 0:2].plot.bar(x='Jogos', y='Copias_Vendidas', color=['#9ed128'])
+plt.title("Jogos mais vendidos da Game Freak")
 
-#Mais vendidos de Outras desenvolvedoras
-out = dataset.loc[dataset['Desenvolvedor']=='Others']
-out.iloc[:,0:2].plot.bar(x='Nome',y='Copias_Vendidas', color = ['#d14128'])
+# Mais vendidos de Outras desenvolvedoras
+out = dataset.loc[dataset['Desenvolvedor'] == 'Others']
+out.iloc[:, 0:2].plot.bar(x='Jogos', y='Copias_Vendidas', color=['#d14128'])
+plt.title("Jogos mais vendidos de outras desenvolvedoras")
+
+# Publicadora
+print(pub.sort_values(ascending=False))
+
+# Mais vendidos da Nintendo
+nint = dataset.loc[dataset['Publicador'] == 'Nintendo']
+nint.iloc[:, 0:2].head(24).plot.bar(x='Jogos', y='Copias_Vendidas', color=['#2ce87a'])
+plt.title("Jogos mais vendidos publicados pela Nintendo")
+
+# Mais vendidos da Bandai
+band = dataset.loc[dataset['Publicador'] == 'Bandai Namco Entertainment']
+band.iloc[:, 0:2].plot.bar(x='Jogos', y='Copias_Vendidas', color=['#2ce2e8'])
+plt.title("Jogos mais vendidos publicados pela Bandai")
+
+# Mais vendidos da Capcom
+cap = dataset.loc[dataset['Publicador'] == 'Capcom']
+cap.iloc[:, 0:2].plot.bar(x='Jogos', y='Copias_Vendidas', color=['#9ed128'])
+plt.title("Jogos mais vendidos publicados pela Capcom")
+
+# Mais vendidos de Outras publicadoras
+outr = dataset.loc[dataset['Publicador'] == 'Others']
+outr.iloc[:, 0:2].plot.bar(x='Jogos', y='Copias_Vendidas', color=['#d14128'])
+plt.title("Jogos mais vendidos publicados por outras publicadoras")
