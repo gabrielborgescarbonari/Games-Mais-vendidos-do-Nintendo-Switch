@@ -1,13 +1,14 @@
 
 ```{r}
+library("RColorBrewer")
 # importa dados, string como fatores(dados categóricos c/ domínio)
-dados <- read.csv("best_selling_switch_games.csv", stringsAsFactors = TRUE)
+dados <- read.csv("best_selling_switch_games.csv", stringsAsFactors = FALSE) #força os dados categóricos a serem caracteres.
 summary(dados) # traz um resumo dos dados, aqui podemos conhecê-los melhor
 ```
 
 ```{r}
 # primeiro problema é dar nomes as colunas
-    colnames(dados) <- c("Jogos" , "Copias_Vendidas" , "Genero","Desenvolvedor" ,"Publicador" ,"Desde" ,"Data de Lançamento")
+colnames(dados) <- c("Jogos" , "Copias_Vendidas" , "Genero","Desenvolvedor" ,"Publicador" ,"Desde" ,"Data de Lançamento")
 # visulizar
 head(dados)
 ```
@@ -42,6 +43,36 @@ hist(dados$Copias_Vendidas)
 ```{r}
 # TRATAMENTO DE DADOS CATEGÓRICOS
 # padroniza de acordo com o dominio (GENERO)
-dados[dados$Genero == "Action-adventure", ]$Genero = "Action"
+dados[dados$Genero == "Action-adventure"|dados$Genero == "Action puzzle" |dados$Genero == "Action role-playing" |dados$Genero == "Action-adventure, Hack and Slash",]$Genero = "Action"
+dados[dados$Genero == "Exergamerhythm"|dados$Genero == "Exergamerole-playing",]$Genero = "Exergame"
+dados[dados$Genero == "Hack and slashRole-playing",]$Genero = "Hack and slash"
+dados[dados$Genero == "Kart racing"|dados$Genero == "Kart racingaugmented reality",]$Genero = "Kart"
+dados[dados$Genero == "Partysocial deduction",]$Genero = "Party"
+dados[dados$Genero == "PlatformerLevel editor"|dados$Genero == "Platformercompilation",]$Genero = "Plataformer"
+dados[dados$Genero == "Role-playingaction-adventure"|dados$Genero == "Simulationrole-playing" |dados$Genero == "Tactical role-playing",]$Genero = "Role-playing"
+dados[dados$Genero == "Real-time strategypuzzle",]$Genero = "Puzzle"
+dados[dados$Genero == "Sandboxsurvival"|dados$Genero == "Survival horror",]$Genero = "Survival"
+dados[dados$Genero == ""|dados$Genero == "Board game" |dados$Genero == "Bullet hell" |dados$Genero == "Construction kit"|dados$Genero == "Photography" |dados$Genero == "Programming" |dados$Genero == "Rhythm"|dados$Genero == "Roguelike" |dados$Genero == "Social simulation" |dados$Genero == "Stealth"|dados$Genero == "Tabletop game",]$Genero = "Others"
+```
+
+```{r}
+# padroniza de acordo com o dominio (DESENVOLVEDORA)
+dados[dados$Desenvolvedor == "Bandai Namco StudiosSora Ltd.",]$Desenvolvedor = "Bandai Namco Studios"
+dados[dados$Desenvolvedor == "Intelligent SystemsKoei Tecmo",]$Desenvolvedor = "Intelligent Systems"
+dados[dados$Desenvolvedor == "Nintendo EPD"|dados$Desenvolvedor == "Nintendo EPD, indieszero"|dados$Desenvolvedor == "Nintendo EPDIntelligent Systems"|dados$Desenvolvedor == "MercurySteamNintendo EPD"|dados$Desenvolvedor == "Nintendo EPDEighting"|dados$Desenvolvedor == "Retro Studios",]$Desenvolvedor = "Nintendo"
+dados[dados$Desenvolvedor == "Arc System Works"|dados$Desenvolvedor == "Atlus"|dados$Desenvolvedor == "CyberConnect2"|dados$Desenvolvedor == "Dimps"|dados$Desenvolvedor == "Dodge Roll"|dados$Desenvolvedor == "Good-Feel"|dados$Desenvolvedor == "ILCA"|dados$Desenvolvedor == "Innersloth"|dados$Desenvolvedor == "Konami"|dados$Desenvolvedor == "Marvelous"|dados$Desenvolvedor == "Mojang"|dados$Desenvolvedor == "Noble Muffins"|dados$Desenvolvedor == "Spike Chunsoft"|dados$Desenvolvedor == "Square EnixAcquire"|dados$Desenvolvedor == "Tantalus Media"|dados$Desenvolvedor == "Team Ninja"|dados$Desenvolvedor == "Ubisoft ParisUbisoft Milan"|dados$Desenvolvedor == "Velan Studios",]$Desenvolvedor = "Others"
+```
+
+```{r}
+# padroniza de acordo com o dominio (PUBLICADORA (nintendo anuncia a cada trimestrs, outras não))
+dados[dados$Publicador == ".mw-parser-output .plainlist ol,.mw-parser-output .plainlist ul{line-height:inherit;list-style:none;margin:0;padding:0}.mw-parser-output .plainlist ol li,.mw-parser-output .plainlist ul li{margin-bottom:0}JP: Koei TecmoNA/PAL: Nintendo"|dados$Publicador == "JP: AtlusNA: SegaPAL: Nintendo"|dados$Publicador == "JP: ImagineerNA/PAL: Nintendo"|dados$Publicador == "JP: Koei TecmoNA/PAL: Nintendo"|dados$Publicador == "JP: Square EnixNA/PAL: Nintendo"|dados$Publicador == "JP: The Pokémon CompanyNA/PAL: Nintendo"|dados$Publicador == "NA/PAL: UbisoftJP/KOR: Nintendo[18]"|dados$Publicador == "The Pokémon CompanyNintendo",]$Publicador = "Nintendo"
+dados[dados$Publicador == "Devolver Digital"|dados$Publicador == "Forever Entertainment"|dados$Publicador == "Innersloth"|dados$Publicador == "JP: Konami"|dados$Publicador == "JP: Xbox Game StudiosNA/PAL: Mojang"|dados$Publicador == "Xseed Games",]$Publicador = "Others"
+```
+
+```{r}
+# ANÁLISE DOS DADOS
+# Generos
+# Mais vendidos de Ação
+
 ```
 

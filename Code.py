@@ -57,8 +57,6 @@ dataset.loc[dataset['Genero'].isin(
 dataset.loc[dataset['Genero'] ==
             'Real-time strategypuzzle', 'Genero'] = "Puzzle"
 dataset.loc[dataset['Genero'].isin(
-    ['Kart racing', 'Kart racingaugmented reality']), 'Genero'] = "Kart"
-dataset.loc[dataset['Genero'].isin(
     ['Sandboxsurvival', 'Survival horror']), 'Genero'] = "Survival"
 dataset.loc[dataset['Genero'].isin(['Board game', 'Bullet hell', 'Construction kit', 'Photography', 'Programming',
                                    'Rhythm', 'Roguelike', 'Social simulation', 'Stealth', 'Tabletop game']), 'Genero'] = "Others"
@@ -84,7 +82,7 @@ des
 # padroniza de acordo com o dominio (PUBLICADORA (nintendo anuncia a cada trimestrs, outras não))
 
 dataset.loc[dataset['Publicador'].isin(['.mw-parser-output .plainlist ol,.mw-parser-output .plainlist ul{line-height:inherit;list-style:none;margin:0;padding:0}.mw-parser-output .plainlist ol li,.mw-parser-output .plainlist ul li{margin-bottom:0}JP: Koei TecmoNA/PAL: Nintendo',
-                                       'JP: AtlusNA: SegaPAL: Nintendo', 'JP: ImagineerNA/PAL: Nintendo', 'JP: Koei TecmoNA/PAL: Nintendo', 'JP: Square EnixNA/PAL: Nintendo', 'JP: The Pokémon CompanyNA/PAL: Nintendo', 'NA/PAL: UbisoftJP/KOR: Nintendo[18]', 'The Pokémon CompanyNintendo']), 'Publicador'] = "Nintendo"
+'JP: AtlusNA: SegaPAL: Nintendo', 'JP: ImagineerNA/PAL: Nintendo', 'JP: Koei TecmoNA/PAL: Nintendo', 'JP: Square EnixNA/PAL: Nintendo', 'JP: The Pokémon CompanyNA/PAL: Nintendo', 'NA/PAL: UbisoftJP/KOR: Nintendo[18]', 'The Pokémon CompanyNintendo']), 'Publicador'] = "Nintendo"
 dataset.loc[dataset['Publicador'].isin(['Devolver Digital', 'Forever Entertainment', 'Innersloth',
                                        'JP: Konami', 'JP: Xbox Game StudiosNA/PAL: Mojang', 'Xseed Games']), 'Publicador'] = "Others"
 
