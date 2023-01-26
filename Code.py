@@ -144,7 +144,8 @@ print(pub.sort_values(ascending=False))
 
 # Mais vendidos da Nintendo
 nint = dataset.loc[dataset['Publicador'] == 'Nintendo']
-nint.iloc[:, 0:2].head(24).plot.bar(x='Jogos', y='Copias_Vendidas', color=['#2ce87a'])
+nint.iloc[:, 0:2].head(24).plot.bar(
+    x='Jogos', y='Copias_Vendidas', color=['#2ce87a'])
 plt.title("Jogos mais vendidos publicados pela Nintendo")
 
 # Mais vendidos da Bandai

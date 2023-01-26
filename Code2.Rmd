@@ -1,0 +1,47 @@
+
+```{r}
+# importa dados, string como fatores(dados categóricos c/ domínio)
+dados <- read.csv("best_selling_switch_games.csv", stringsAsFactors = TRUE)
+summary(dados) # traz um resumo dos dados, aqui podemos conhecê-los melhor
+```
+
+```{r}
+# primeiro problema é dar nomes as colunas
+    colnames(dados) <- c("Jogos" , "Copias_Vendidas" , "Genero","Desenvolvedor" ,"Publicador" ,"Desde" ,"Data de Lançamento")
+# visulizar
+head(dados)
+```
+
+```{r}
+# EXPLORAR DADOS CATEGÓRICOS
+# genero (Agrupar mesmos)
+gen = table(dados$Genero)
+barplot(gen, main="Gêneros", xlab="Gêneros")
+```
+
+```{r}
+# desenvolvedor (agrupar mesmos)
+des = table(dados$Desenvolvedor)
+barplot(des, main="Desenvolvedores", xlab="Desenvolvedores")
+```
+
+```{r}
+# publicador (agrupar mesmos)
+pub = table(dados$Publicador)
+barplot(pub, main="Publicadora", xlab="Publicadora")
+```
+
+```{r}
+#EXPLORAR COLUNAS NUMÉRICAS
+# Copias Vendidas (procurar padrão dos que venderam muito)
+summary(dados$Copias_Vendidas)
+boxplot(dados$Copias_Vendidas)
+hist(dados$Copias_Vendidas)
+```
+
+```{r}
+# TRATAMENTO DE DADOS CATEGÓRICOS
+# padroniza de acordo com o dominio (GENERO)
+dados[dados$Genero == "Action-adventure", ]$Genero = "Action"
+```
+
