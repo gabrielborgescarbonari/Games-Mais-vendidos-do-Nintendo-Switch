@@ -7,3 +7,6 @@ Por enquanto podemos ver os jogos mais vendidos de cada gênero, de cada desenvo
 
 Fazendo uma leve pesquisa de mercado, vemos que muitas desenvolvedoras são ramos de empresas maiores, como Nintendo e Bandai. O mesmo ocorre com as publicadoras. :D
 
+A análise está pronta tanto em R quanto em Python, acredito que há melhores maneiras de fazer, porém neste projeto acredito que é o suficiente.
+
+Há ainda alguns ajustes estéticos a serrem feitos. E serão. Algum dia.
