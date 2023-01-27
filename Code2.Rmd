@@ -1,6 +1,8 @@
 
 ```{r}
+library(lattice)
 library("RColorBrewer")
+library(dplyr)
 # importa dados, string como fatores(dados categóricos c/ domínio)
 dados <- read.csv("best_selling_switch_games.csv", stringsAsFactors = FALSE) #força os dados categóricos a serem caracteres.
 summary(dados) # traz um resumo dos dados, aqui podemos conhecê-los melhor
@@ -48,11 +50,14 @@ dados[dados$Genero == "Exergamerhythm"|dados$Genero == "Exergamerole-playing",]$
 dados[dados$Genero == "Hack and slashRole-playing",]$Genero = "Hack and slash"
 dados[dados$Genero == "Kart racing"|dados$Genero == "Kart racingaugmented reality",]$Genero = "Kart"
 dados[dados$Genero == "Partysocial deduction",]$Genero = "Party"
-dados[dados$Genero == "PlatformerLevel editor"|dados$Genero == "Platformercompilation",]$Genero = "Plataformer"
+dados[dados$Genero == "PlatformerLevel editor"|dados$Genero == "Platformercompilation",]$Genero = "Platformer"
 dados[dados$Genero == "Role-playingaction-adventure"|dados$Genero == "Simulationrole-playing" |dados$Genero == "Tactical role-playing",]$Genero = "Role-playing"
 dados[dados$Genero == "Real-time strategypuzzle",]$Genero = "Puzzle"
 dados[dados$Genero == "Sandboxsurvival"|dados$Genero == "Survival horror",]$Genero = "Survival"
 dados[dados$Genero == ""|dados$Genero == "Board game" |dados$Genero == "Bullet hell" |dados$Genero == "Construction kit"|dados$Genero == "Photography" |dados$Genero == "Programming" |dados$Genero == "Rhythm"|dados$Genero == "Roguelike" |dados$Genero == "Social simulation" |dados$Genero == "Stealth"|dados$Genero == "Tabletop game",]$Genero = "Others"
+# visualiza o resultado
+g <-aggregate(dados[,-c(1,4,5,6,7)]$Copias_Vendidas, by=list(dados[,-c(1,4,5,6,7)]$Genero), FUN=sum)
+head(g[order(-g$x),],10)
 ```
 
 ```{r}
@@ -61,18 +66,68 @@ dados[dados$Desenvolvedor == "Bandai Namco StudiosSora Ltd.",]$Desenvolvedor = "
 dados[dados$Desenvolvedor == "Intelligent SystemsKoei Tecmo",]$Desenvolvedor = "Intelligent Systems"
 dados[dados$Desenvolvedor == "Nintendo EPD"|dados$Desenvolvedor == "Nintendo EPD, indieszero"|dados$Desenvolvedor == "Nintendo EPDIntelligent Systems"|dados$Desenvolvedor == "MercurySteamNintendo EPD"|dados$Desenvolvedor == "Nintendo EPDEighting"|dados$Desenvolvedor == "Retro Studios",]$Desenvolvedor = "Nintendo"
 dados[dados$Desenvolvedor == "Arc System Works"|dados$Desenvolvedor == "Atlus"|dados$Desenvolvedor == "CyberConnect2"|dados$Desenvolvedor == "Dimps"|dados$Desenvolvedor == "Dodge Roll"|dados$Desenvolvedor == "Good-Feel"|dados$Desenvolvedor == "ILCA"|dados$Desenvolvedor == "Innersloth"|dados$Desenvolvedor == "Konami"|dados$Desenvolvedor == "Marvelous"|dados$Desenvolvedor == "Mojang"|dados$Desenvolvedor == "Noble Muffins"|dados$Desenvolvedor == "Spike Chunsoft"|dados$Desenvolvedor == "Square EnixAcquire"|dados$Desenvolvedor == "Tantalus Media"|dados$Desenvolvedor == "Team Ninja"|dados$Desenvolvedor == "Ubisoft ParisUbisoft Milan"|dados$Desenvolvedor == "Velan Studios",]$Desenvolvedor = "Others"
+# visualiza o resultado
+d<-aggregate(dados[,-c(1,3,5,6,7)]$Copias_Vendidas, by=list(dados[,-c(1,3,5,6,7)]$Desenvolvedor), FUN=sum)
+head(d[order(-d$x),],10)
 ```
 
 ```{r}
 # padroniza de acordo com o dominio (PUBLICADORA (nintendo anuncia a cada trimestrs, outras não))
 dados[dados$Publicador == ".mw-parser-output .plainlist ol,.mw-parser-output .plainlist ul{line-height:inherit;list-style:none;margin:0;padding:0}.mw-parser-output .plainlist ol li,.mw-parser-output .plainlist ul li{margin-bottom:0}JP: Koei TecmoNA/PAL: Nintendo"|dados$Publicador == "JP: AtlusNA: SegaPAL: Nintendo"|dados$Publicador == "JP: ImagineerNA/PAL: Nintendo"|dados$Publicador == "JP: Koei TecmoNA/PAL: Nintendo"|dados$Publicador == "JP: Square EnixNA/PAL: Nintendo"|dados$Publicador == "JP: The Pokémon CompanyNA/PAL: Nintendo"|dados$Publicador == "NA/PAL: UbisoftJP/KOR: Nintendo[18]"|dados$Publicador == "The Pokémon CompanyNintendo",]$Publicador = "Nintendo"
 dados[dados$Publicador == "Devolver Digital"|dados$Publicador == "Forever Entertainment"|dados$Publicador == "Innersloth"|dados$Publicador == "JP: Konami"|dados$Publicador == "JP: Xbox Game StudiosNA/PAL: Mojang"|dados$Publicador == "Xseed Games",]$Publicador = "Others"
+# visualiza o resultado
+p<-aggregate(dados[,-c(1,4,3,6,7)]$Copias_Vendidas, by=list(dados$Publicador), FUN=sum)
+head(p[order(-p$x),],10)
 ```
 
 ```{r}
 # ANÁLISE DOS DADOS
-# Generos
+# GENEROS
 # Mais vendidos de Ação
+dados[,-c(1,4,5,6,7)]
+aggregate(dados[,2:3]$Copias_Vendidas, by=list(dados[,-c(1,2,4,5,6,7)]), FUN=sum)
+head(dados[order(-dados$Copias_Vendidas),],8) 
+
+Mprop = head(dados[,-c(1,4,5,6,7)][order(-dados$Copias_Vendidas),],10)
+barplot(Mprop$Copias_Vendidas,col=brewer.pal(n = 8, name = "Set2"),las=2,main = "Maiores Vendas")
+legend(x = 50,legend=Mprop$Jogos,col = brewer.pal(n = 8, name = "Set2"), lty=1:2, cex=0.8, ncol = 2,lwd=4)
+box()
+
+```
+
+```{r}
+# Mais vendidos de Role-playing
+
+```
+
+```{r}
+# Mais vendidos de Plataformer
+
+```
+
+```{r}
+# Mais vendidos de Outros generos
+
+```
+
+```{r}
+#DESENVOLVEDORA
+# Mais vendidos da Nintendo
+
+```
+
+```{r}
+# Mais vendidos da Bandai
+
+```
+
+```{r}
+# Mais vendidos da Game Freak
+
+```
+
+```{r}
+# Mais vendidos de Outras desenvolvedoras
 
 ```
 
