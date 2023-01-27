@@ -103,8 +103,12 @@ srtgen <- dados[order(dados$Genero),]
 a <- srtgen[1:14,][order(-dados$Copias_Vendidas),]$Copias_Vendidas
 c<-srtgen[1:14,][order(-dados$Copias_Vendidas),]$Jogos
 barplot(a[1:14], col=brewer.pal(n = 10, name = "RdBu"),las=2,main = "Jogos mais vendidos de Ação")
-legend("topright",legend=c[1:14],col = brewer.pal(n = 10, name = "RdBu"), lty=1:2, cex=0.8, ncol = 2,lwd=4)
+legend("topright",inset = c(-0, 0),legend=c[1:14],col = brewer.pal(n = 10, name = "RdBu"), pch = c(11,12),cex=0.8, ncol = 1,lwd=2 )
 box()
+
+legend("topright", inset = c(0.4, 1.2),                   
+       legend = c("Group 1","Group 2","Group 3"),
+       pch = c(11,12,13), col = 1:3)
 ```
 
 ```{r}
@@ -112,7 +116,7 @@ box()
 r <- srtgen[55:65,][order(-dados$Copias_Vendidas),]$Copias_Vendidas
 o<-srtgen[55:65,][order(-dados$Copias_Vendidas),]$Jogos
 barplot(r[1:11], col=brewer.pal(n = 10, name = "RdBu"),las=2,main = "Jogos mais vendidos de Role-Playing")
-legend("topright",legend=o[1:11],col = brewer.pal(n = 10, name = "RdBu"), lty=1:2, cex=0.8, ncol = 2,lwd=4)
+legend("topright",legend=o[1:11],inset = c(-0, 0),col = brewer.pal(n = 10, name = "RdBu"), pch = c(11,12),cex=0.8, ncol = 1,lwd=2)
 box()
 ```
 
@@ -121,7 +125,7 @@ box()
 p <- srtgen[43:51,][order(-dados$Copias_Vendidas),]$Copias_Vendidas
 l<-srtgen[43:51,][order(-dados$Copias_Vendidas),]$Jogos
 barplot(p[1:9], col=brewer.pal(n = 10, name = "RdBu"),las=2,main = "Jogos mais vendidos de Plataforma")
-legend("topright",legend=l[1:9],col = brewer.pal(n = 10, name = "RdBu"), lty=1:2, cex=0.8, ncol = 2,lwd=4)
+legend("topright",inset = c(-0, 0),legend=l[1:9],col = brewer.pal(n = 10, name = "RdBu"), pch = c(11,12),cex=0.8, ncol = 1,lwd=2)
 box()
 ```
 
@@ -130,7 +134,7 @@ box()
 o <- srtgen[28:37,][order(-dados$Copias_Vendidas),]$Copias_Vendidas
 u<-srtgen[28:37,][order(-dados$Copias_Vendidas),]$Jogos
 barplot(o[1:10], col=brewer.pal(n = 10, name = "RdBu"),las=2,main = "Jogos mais vendidos de Outros Gêneros")
-legend("topright",legend=u[1:10],col = brewer.pal(n = 10, name = "RdBu"), lty=1:2, cex=0.8, ncol = 2,lwd=4)
+legend("topright",inset = c(-0, 0),legend=u[1:10],col = brewer.pal(n = 10, name = "RdBu"), pch = c(11,12),cex=0.8, ncol = 1,lwd=2)
 box()
 ```
 
@@ -142,7 +146,7 @@ srtdes <- dados[order(dados$Desenvolvedor),]
 n <- srtdes[29:51,][order(-dados$Copias_Vendidas),]$Copias_Vendidas
 i<-srtdes[29:51,][order(-dados$Copias_Vendidas),]$Jogos
 barplot(n[1:23], col=brewer.pal(n = 10, name = "RdBu"),las=2,main = "Jogos mais vendidos da Nintendo")
-legend("topright",legend=i[1:23],col = brewer.pal(n = 10, name = "RdBu"), lty=1:2, cex=0.8, ncol = 2,lwd=4)
+legend("topright",inset = c(-0.6, 0),legend=i[1:23],col = brewer.pal(n = 10, name = "RdBu"), pch = c(11,12),cex=0.8, ncol = 1,lwd=2)
 box()
 ```
 
