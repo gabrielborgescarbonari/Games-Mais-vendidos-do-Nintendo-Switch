@@ -16,17 +16,17 @@ dataset.columns = ["Jogos", "Copias_Vendidas", "Genero",
 
 # EXPLORAR DADOS CATEGÓRICOS
 # genero (Agrupar mesmos)
-gen = dataset.groupby(['Genero']).size()
+gen = dataset['Genero'].value_counts()
 gen
 gen.plot.bar(color='gray')
 
 # desenvolvedor (agrupar mesmos)
-des = dataset.groupby(['Desenvolvedor']).size()
+des = dataset['Desenvolvedor'].value_counts()
 des
 des.plot.bar(color='gray')
 
 # publicador (agrupar mesmos)
-pub = dataset.groupby(['Publicador']).size()
+pub = dataset['Publicador'].value_counts()
 pub
 pub.plot.bar(color='gray')
 
@@ -61,7 +61,7 @@ dataset.loc[dataset['Genero'].isin(
 dataset.loc[dataset['Genero'].isin(['Board game', 'Bullet hell', 'Construction kit', 'Photography', 'Programming',
                                    'Rhythm', 'Roguelike', 'Social simulation', 'Stealth', 'Tabletop game']), 'Genero'] = "Others"
 # visualiza o resultado
-gen = dataset.groupby(['Genero']).size()
+gen = dataset['Genero'].value_counts()
 gen
 
 # padroniza de acordo com o dominio (DESENVOLVEDORA)
@@ -76,23 +76,23 @@ dataset.loc[dataset['Desenvolvedor'].isin(['Arc System Works', 'Atlus', 'CyberCo
                                           'Noble Muffins', 'Spike Chunsoft', 'Square EnixAcquire', 'Tantalus Media', 'Team Ninja', 'Ubisoft ParisUbisoft Milan', 'Velan Studios']), 'Desenvolvedor'] = "Others"
 
 # visualiza o resultado
-des = dataset.groupby(['Desenvolvedor']).size()
+des = dataset['Desenvolvedor'].value_counts()
 des
 
 # padroniza de acordo com o dominio (PUBLICADORA (nintendo anuncia a cada trimestrs, outras não))
 
 dataset.loc[dataset['Publicador'].isin(['.mw-parser-output .plainlist ol,.mw-parser-output .plainlist ul{line-height:inherit;list-style:none;margin:0;padding:0}.mw-parser-output .plainlist ol li,.mw-parser-output .plainlist ul li{margin-bottom:0}JP: Koei TecmoNA/PAL: Nintendo',
-'JP: AtlusNA: SegaPAL: Nintendo', 'JP: ImagineerNA/PAL: Nintendo', 'JP: Koei TecmoNA/PAL: Nintendo', 'JP: Square EnixNA/PAL: Nintendo', 'JP: The Pokémon CompanyNA/PAL: Nintendo', 'NA/PAL: UbisoftJP/KOR: Nintendo[18]', 'The Pokémon CompanyNintendo']), 'Publicador'] = "Nintendo"
+                                        'JP: AtlusNA: SegaPAL: Nintendo', 'JP: ImagineerNA/PAL: Nintendo', 'JP: Koei TecmoNA/PAL: Nintendo', 'JP: Square EnixNA/PAL: Nintendo', 'JP: The Pokémon CompanyNA/PAL: Nintendo', 'NA/PAL: UbisoftJP/KOR: Nintendo[18]', 'The Pokémon CompanyNintendo']), 'Publicador'] = "Nintendo"
 dataset.loc[dataset['Publicador'].isin(['Devolver Digital', 'Forever Entertainment', 'Innersloth',
                                        'JP: Konami', 'JP: Xbox Game StudiosNA/PAL: Mojang', 'Xseed Games']), 'Publicador'] = "Others"
 
 # visualiza o resultado
-pub = dataset.groupby(['Publicador']).size()
+pub = dataset['Publicador'].value_counts()
 pub
 
 # ANÁLISE DOS DADOS
 # Generos
-print(gen.sort_values(ascending=False))
+print(gen)
 
 # Mais vendidos de Ação
 acao = dataset.loc[dataset['Genero'] == 'Action']
@@ -115,7 +115,7 @@ ou.iloc[:, 0:2].plot.bar(x='Jogos', y='Copias_Vendidas', color=['#d14128'])
 plt.title("Jogos mais vendidos de outros gêneros")
 
 # Desenvolvedor
-print(des.sort_values(ascending=False))
+print(des)
 
 # Mais vendidos da Nintendo
 nin = dataset.loc[dataset['Desenvolvedor'] == 'Nintendo']
@@ -138,7 +138,7 @@ out.iloc[:, 0:2].plot.bar(x='Jogos', y='Copias_Vendidas', color=['#d14128'])
 plt.title("Jogos mais vendidos de outras desenvolvedoras")
 
 # Publicadora
-print(pub.sort_values(ascending=False))
+print(pub)
 
 # Mais vendidos da Nintendo
 nint = dataset.loc[dataset['Publicador'] == 'Nintendo']
